@@ -11,7 +11,6 @@ import { deepPurple } from '@mui/material/colors';
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
-  console.log(currentUser);
 
   return (
     <Container>
@@ -23,7 +22,11 @@ const Navbar = () => {
         {currentUser ? (
           <User>
             <VideoCallOutlinedIcon onClick={() => setOpen(true)} />
-            <Avatar src={currentUser?.img}></Avatar>
+            <Avatar
+              src={`${currentUser?.img}`}
+              sx={{ bgcolor: deepPurple[500] }}>
+              {currentUser?.name?.charAt(0)}
+            </Avatar>
             {currentUser.name}
           </User>
         ) : (

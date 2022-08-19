@@ -48,7 +48,6 @@ const SignIn = () => {
             img: result.user.photoURL,
           })
           .then((res) => {
-            console.log(res);
             dispatch(loginSuccess(res.data));
             navigate('/');
           });
