@@ -28,8 +28,10 @@ import FlagOutlinedIcon from '@mui/icons-material/FlagOutlined';
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
 import SettingsBrightnessOutlinedIcon from '@mui/icons-material/SettingsBrightnessOutlined';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function Menu({ darkMode, setDarkMode }) {
+  const { currentUser } = useSelector((state) => state.user);
   return (
     <Container>
       <Wrapper>
@@ -39,10 +41,12 @@ function Menu({ darkMode, setDarkMode }) {
             KavyaTube
           </Logo>
         </Link>
-        <Item>
-          <HomeIcon />
-          Home
-        </Item>
+        <Link to='/' style={{ textDecoration: 'none', color: 'inherit' }}>
+          <Item>
+            <HomeIcon />
+            Home
+          </Item>
+        </Link>
         <Link to='trends' style={{ textDecoration: 'none', color: 'inherit' }}>
           <Item>
             <ExploreOutlinedIcon />
@@ -67,16 +71,20 @@ function Menu({ darkMode, setDarkMode }) {
           History
         </Item>
         <Hr />
-        <Login>
-          Sign in to like videos, comment, and subscribe.
-          <Link to='signin' style={{ textDecoration: 'none' }}>
-            <Button>
-              <AccountCircleOutlinedIcon />
-              SIGN IN
-            </Button>
-          </Link>
-        </Login>
-        <Hr />
+        {!currentUser && (
+          <>
+            <Login>
+              Sign in to like videos, comment, and subscribe.
+              <Link to='signin' style={{ textDecoration: 'none' }}>
+                <Button>
+                  <AccountCircleOutlinedIcon />
+                  SIGN IN
+                </Button>
+              </Link>
+            </Login>
+            <Hr />
+          </>
+        )}
         <Title>BEST OF KAVYATUBE</Title>
         <Item>
           <LibraryMusicOutlinedIcon />
