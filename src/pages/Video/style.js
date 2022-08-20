@@ -97,3 +97,9 @@ export const Subscribe = styled.button`
   padding: 10px 20px;
   cursor: pointer;
 `;
+
+export const VideoFrame = styled.video`
+  max-height: 720px;
+  width: 100%;
+  object-fit: cover;
+`;
