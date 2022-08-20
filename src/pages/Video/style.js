@@ -88,10 +88,10 @@ export const Description = styled.p`
 `;
 
 export const Subscribe = styled.button`
-  background-color: #cc1a00;
+  background-color: ${(props) => (props.id ? '#181818' : '#cc1a00')};
+  border: ${(props) => (props.id ? '1px solid gray' : 'none')};
   font-weight: 500;
   color: white;
-  border: none;
   border-radius: 3px;
   height: max-content;
   padding: 10px 20px;
