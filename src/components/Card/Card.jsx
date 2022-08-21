@@ -9,11 +9,10 @@ import {
   Title,
   ChannelName,
   Info,
+  Avatar,
 } from './style';
 import { format } from 'timeago.js';
 import axios from 'axios';
-import { deepPurple } from '@mui/material/colors';
-import Avatar from '@mui/material/Avatar';
 
 const Card = ({ type, video }) => {
   const [channel, setChannel] = useState({});
@@ -31,13 +30,15 @@ const Card = ({ type, video }) => {
       <Container type={type}>
         <Image type={type} src={video.imgUrl} />
         <Details type={type}>
-          <ChannelImage type={type}>
-            <Avatar
-              src={`${channel?.img}`}
-              sx={{ bgcolor: deepPurple[500], width: 46, height: 46 }}>
-              {channel?.name?.charAt(0)}
+          {channel?.img ? (
+            <ChannelImage type={type} src={channel?.img} />
+          ) : (
+            <Avatar type={type}>
+              <span style={{ fontSize: '24px', color: '#000000' }}>
+                {channel?.name?.charAt(0)}
+              </span>
             </Avatar>
-          </ChannelImage>
+          )}
 
           <Texts>
             <Title>{video.title}</Title>

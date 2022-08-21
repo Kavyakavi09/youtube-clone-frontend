@@ -23,6 +23,20 @@ export const Details = styled.div`
 `;
 
 export const ChannelImage = styled.div`
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: ${(props) => props.type === 'sm' && 'none'};
+`;
+
+export const Avatar = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #673ab7;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
   display: ${(props) => props.type === 'sm' && 'none'};
 `;
 
