@@ -12,12 +12,10 @@ import {
   ChannelInfo,
   Subscribe,
   Hr,
-  Recommendation,
   ChannelCounter,
   ChannelName,
   Description,
   ChannelDetail,
-  Image,
   VideoFrame,
 } from './style';
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
@@ -27,7 +25,6 @@ import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ReplyOutlinedIcon from '@mui/icons-material/ReplyOutlined';
 import AddTaskOutlinedIcon from '@mui/icons-material/AddTaskOutlined';
 import Comments from '../../components/Comments/Comments';
-import Card from '../../components/Card/Card';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
@@ -39,6 +36,9 @@ import {
 } from '../../redux/videoSlice';
 import { format } from 'timeago.js';
 import { subscription } from '../../redux/userSlice';
+import Recommendation from '../../components/Recommendation/Recommendation';
+import { deepPurple } from '@mui/material/colors';
+import Avatar from '@mui/material/Avatar';
 
 const Video = () => {
   const { currentUser } = useSelector((state) => state.user);
@@ -120,7 +120,11 @@ const Video = () => {
         <Hr />
         <Channel>
           <ChannelInfo>
-            <Image src={channel.img} />
+            <Avatar
+              src={`${channel?.img}`}
+              sx={{ bgcolor: deepPurple[500], width: 46, height: 46 }}>
+              {channel?.name?.charAt(0)}
+            </Avatar>
             <ChannelDetail>
               <ChannelName>{channel.name}</ChannelName>
               <ChannelCounter>{channel.subscribers} subscribers</ChannelCounter>

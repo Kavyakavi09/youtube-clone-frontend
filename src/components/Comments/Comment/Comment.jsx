@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Avatar, Details, Name, Text, Date } from './style';
+import { Container, Details, Name, Text, Date } from './style';
 import axios from 'axios';
 import { format } from 'timeago.js';
+import { deepPurple } from '@mui/material/colors';
+import Avatar from '@mui/material/Avatar';
 
 const Comment = ({ comment }) => {
   const [channel, setChannel] = useState({});
@@ -15,7 +17,11 @@ const Comment = ({ comment }) => {
   }, [comment.userId]);
   return (
     <Container>
-      <Avatar src={channel.img} />
+      <Avatar
+        src={`${channel?.img}`}
+        sx={{ bgcolor: deepPurple[500], width: 46, height: 46 }}>
+        {channel?.name?.charAt(0)}
+      </Avatar>
       <Details>
         <Name>
           {channel.name} <Date>{format(comment.createdAt)}</Date>

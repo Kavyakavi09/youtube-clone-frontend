@@ -34,8 +34,8 @@ export const Input = styled.input`
   border: none;
   background-color: transparent;
   outline: none;
-  color: ${({ theme }) => theme.text};
   flex: 1;
+  color: ${({ theme }) => theme.text};
 `;
 
 export const Button = styled.button`

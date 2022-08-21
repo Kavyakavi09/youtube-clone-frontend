@@ -3,14 +3,16 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 import VideoCallOutlinedIcon from '@mui/icons-material/VideoCallOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import Avatar from '@mui/material/Avatar';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Container, Wrapper, Search, Input, Button, User } from './style';
 import { useSelector } from 'react-redux';
 import { deepPurple } from '@mui/material/colors';
 import Upload from '../Upload/Upload';
 
 const Navbar = () => {
+  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
+  const [q, setQ] = useState('');
   const { currentUser } = useSelector((state) => state.user);
 
   return (
@@ -18,8 +20,15 @@ const Navbar = () => {
       <Container>
         <Wrapper>
           <Search>
-            <Input placeholder='Search' type='search' />
-            <SearchOutlinedIcon />
+            <Input
+              placeholder='Search'
+              type='search'
+              onChange={(e) => setQ(e.target.value)}
+            />
+            <SearchOutlinedIcon
+              sx={{ cursor: 'pointer' }}
+              onClick={() => navigate(`/search?q=${q}`)}
+            />
           </Search>
           {currentUser ? (
             <User>
