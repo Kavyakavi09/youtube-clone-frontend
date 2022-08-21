@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Container, NewComment, Avatar, Input } from './style';
+import { Container, NewComment, Input } from './style';
 import Comment from './Comment/Comment';
 import axios from 'axios';
+import { deepPurple } from '@mui/material/colors';
+import Avatar from '@mui/material/Avatar';
 
 const Comments = ({ videoId }) => {
   const { currentUser } = useSelector((state) => state.user);
@@ -22,7 +24,11 @@ const Comments = ({ videoId }) => {
   return (
     <Container>
       <NewComment>
-        <Avatar src={currentUser.img} />
+        <Avatar
+          src={`${currentUser?.img}`}
+          sx={{ bgcolor: deepPurple[500], width: 46, height: 46 }}>
+          {currentUser?.name?.charAt(0)}
+        </Avatar>
         <Input placeholder='Add a comment...' />
       </NewComment>
       {comments.map((comment) => (

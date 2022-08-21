@@ -18,6 +18,7 @@ import {
   Button,
   Label,
 } from './style';
+import { useSelector } from 'react-redux';
 
 const Upload = ({ setOpen }) => {
   const [img, setImg] = useState(undefined);
@@ -28,6 +29,7 @@ const Upload = ({ setOpen }) => {
   const [tags, setTags] = useState([]);
 
   const navigate = useNavigate();
+  const { currentUser } = useSelector((state) => state.user);
 
   const handleChange = (e) => {
     setInputs((prev) => {

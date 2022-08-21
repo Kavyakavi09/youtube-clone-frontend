@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import VideoCallOutlinedIcon from '@mui/icons-material/VideoCallOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
@@ -8,12 +8,36 @@ import { Container, Wrapper, Search, Input, Button, User } from './style';
 import { useSelector } from 'react-redux';
 import { deepPurple } from '@mui/material/colors';
 import Upload from '../Upload/Upload';
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import Tooltip from '@mui/material/Tooltip';
+import MenuItem from '@mui/material/MenuItem';
+import axios from 'axios';
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
   const [q, setQ] = useState('');
   const { currentUser } = useSelector((state) => state.user);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+  const handleCloseUser = () => {
+    setAnchorElUser(null);
+  };
+  const handleCloseUserMenu = async () => {
+    try {
+      await axios.get(`/auth/signout`);
+      localStorage.removeItem('persist:root');
+      navigate('/signin');
+      window.location.reload();
+    } catch (err) {}
+    setAnchorElUser(null);
+  };
 
   return (
     <>
@@ -36,12 +60,37 @@ const Navbar = () => {
                 onClick={() => setOpen(true)}
                 sx={{ cursor: 'pointer' }}
               />
-              <Avatar
-                src={`${currentUser?.img}`}
-                sx={{ bgcolor: deepPurple[500] }}>
-                {currentUser?.name?.charAt(0)}
-              </Avatar>
-              {currentUser.name}
+              <Box sx={{ flexGrow: 0 }}>
+                <Tooltip title='Log out'>
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar
+                      src={`${currentUser?.img}`}
+                      sx={{ bgcolor: deepPurple[500] }}>
+                      {currentUser?.name?.charAt(0)}
+                    </Avatar>
+                  </IconButton>
+                </Tooltip>
+                <span style={{ marginLeft: '5px' }}>{currentUser.name}</span>
+                <Menu
+                  sx={{ mt: '45px' }}
+                  id='menu-appbar'
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUser}>
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Typography textAlign='center'>Logout</Typography>
+                  </MenuItem>
+                </Menu>
+              </Box>
             </User>
           ) : (
             <Link to='signin' style={{ textDecoration: 'none' }}>
