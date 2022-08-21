@@ -1,6 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Container, NewComment, Input } from './style';
+import { Container, NewComment, Input, Buttons, Button } from './style';
 import Comment from './Comment/Comment';
 import axios from 'axios';
 import { deepPurple } from '@mui/material/colors';
@@ -10,16 +11,26 @@ const Comments = ({ videoId }) => {
   const { currentUser } = useSelector((state) => state.user);
 
   const [comments, setComments] = useState([]);
+  const [desc, setDesc] = useState('');
+
+  const fetchComments = async () => {
+    try {
+      const res = await axios.get(`/comments/${videoId}`);
+      setComments(res.data);
+    } catch (err) {}
+  };
 
   useEffect(() => {
-    const fetchComments = async () => {
-      try {
-        const res = await axios.get(`/comments/${videoId}`);
-        setComments(res.data);
-      } catch (err) {}
-    };
     fetchComments();
   }, [videoId]);
+
+  const PostComments = async () => {
+    try {
+      await axios.post(`/comments/`, { desc, videoId });
+      fetchComments();
+      setDesc('');
+    } catch (err) {}
+  };
 
   return (
     <Container>
@@ -29,8 +40,15 @@ const Comments = ({ videoId }) => {
           sx={{ bgcolor: deepPurple[500], width: 46, height: 46 }}>
           {currentUser?.name?.charAt(0)}
         </Avatar>
-        <Input placeholder='Add a comment...' />
+        <Input
+          placeholder='Add a comment...'
+          value={desc}
+          onChange={(e) => setDesc(e.target.value)}
+        />
       </NewComment>
+      <Buttons>
+        <Button onClick={PostComments}>Comment</Button>
+      </Buttons>
       {comments.map((comment) => (
         <Comment key={comment._id} comment={comment} />
       ))}

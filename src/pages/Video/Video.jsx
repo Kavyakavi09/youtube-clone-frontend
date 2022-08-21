@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import {
   Container,
@@ -63,6 +64,17 @@ const Video = () => {
     };
     fetchData();
   }, [path, dispatch]);
+
+  useEffect(() => {
+    const fetchView = async () => {
+      try {
+        await axios.put(`/videos/view/${path}`);
+      } catch (err) {
+        dispatch(fetchFailure);
+      }
+    };
+    fetchView();
+  }, []);
 
   const handleLike = async () => {
     await axios.put(`/users/like/${currentVideo?._id}`);
