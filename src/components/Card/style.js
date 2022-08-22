@@ -22,8 +22,8 @@ export const Details = styled.div`
 `;
 
 export const ChannelImage = styled.img`
-  width: 36px;
-  height: 36px;
+  width: 46px;
+  height: 46px;
   border-radius: 50%;
   display: ${(props) => props.type === 'sm' && 'none'};
 `;

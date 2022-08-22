@@ -44,7 +44,7 @@ import Avatar from '@mui/material/Avatar';
 const Video = () => {
   const { currentUser } = useSelector((state) => state.user);
   const { currentVideo } = useSelector((state) => state.video);
-
+  console.log(currentVideo);
   const dispatch = useDispatch();
   const path = useLocation().pathname.split('/')[2];
   const [channel, setChannel] = useState({});

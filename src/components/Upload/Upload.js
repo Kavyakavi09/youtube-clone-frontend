@@ -39,7 +39,7 @@ const Upload = ({ setOpen }) => {
   };
 
   const handleTags = (e) => {
-    setTags(e.target.value.split(',').join(','));
+    setTags(e.target.value.split(','));
   };
 
   const uploadFile = (file, urlType) => {
@@ -123,7 +123,8 @@ const Upload = ({ setOpen }) => {
         <Input
           type='text'
           placeholder='Separate the tags with commas.'
-          onChance={handleTags}
+          onChange={handleTags}
+          value={tags}
         />
         <Label>Image:</Label>
         {imgPerc > 0 ? (
