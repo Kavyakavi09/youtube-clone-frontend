@@ -90,7 +90,9 @@ const Navbar = () => {
                     </Avatar>
                   </IconButton>
                 </Tooltip>
-                <span style={{ marginLeft: '5px' }}>{currentUser.name}</span>
+                <span style={{ marginLeft: '5px', marginRight: '5px' }}>
+                  {currentUser.name}
+                </span>
                 <Menu
                   sx={{ mt: '45px' }}
                   id='menu-appbar'

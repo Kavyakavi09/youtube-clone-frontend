@@ -7,7 +7,8 @@ export const Container = styled.div`
 
 export const Content = styled.div`
   flex: 4;
-  padding-left: 24px;
+  padding-top: 70px;
+  padding-left: 120px;
 `;
 export const VideoWrapper = styled.div``;
 

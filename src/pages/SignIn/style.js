@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  padding: 60px 60px;
+  margin-left: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: calc(100vh - 56px);
+  height: calc(100%-56%)
   color: ${({ theme }) => theme.text};
 `;
 
