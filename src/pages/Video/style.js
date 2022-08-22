@@ -97,7 +97,7 @@ export const Subscribe = styled.button`
 `;
 
 export const VideoFrame = styled.video`
-  max-height: 720px;
+  max-height: 550px;
   width: 100%;
   object-fit: cover;
 `;

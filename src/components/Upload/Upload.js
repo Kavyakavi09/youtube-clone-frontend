@@ -39,7 +39,7 @@ const Upload = ({ setOpen }) => {
   };
 
   const handleTags = (e) => {
-    setTags(e.target.value.split(','));
+    setTags(e.target.value.split(',').join(','));
   };
 
   const uploadFile = (file, urlType) => {

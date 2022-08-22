@@ -21,7 +21,7 @@ export const Details = styled.div`
   flex: 1;
 `;
 
-export const ChannelImage = styled.div`
+export const ChannelImage = styled.img`
   width: 36px;
   height: 36px;
   border-radius: 50%;
