@@ -30,6 +30,7 @@ const Upload = ({ setOpen }) => {
 
   const navigate = useNavigate();
   const { currentUser } = useSelector((state) => state.user);
+  let channelImage = currentUser?.img;
 
   const handleChange = (e) => {
     setInputs((prev) => {
@@ -87,7 +88,7 @@ const Upload = ({ setOpen }) => {
 
   const handleUpload = async (e) => {
     e.preventDefault();
-    const res = await axios.post('/videos', { ...inputs, tags });
+    const res = await axios.post('/videos', { ...inputs, tags, channelImage });
     setOpen(false);
     res.status === 200 && navigate(`/video/${res.data._id}`);
   };
