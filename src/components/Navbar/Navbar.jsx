@@ -1,10 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import kavyaTube from '../../Img/logo.png';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import VideoCallOutlinedIcon from '@mui/icons-material/VideoCallOutlined';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import Avatar from '@mui/material/Avatar';
 import { Link, useNavigate } from 'react-router-dom';
-import { Container, Wrapper, Search, Input, Button, User } from './style';
+import {
+  Container,
+  Wrapper,
+  Search,
+  Input,
+  Button,
+  Buttons,
+  User,
+  Logo,
+  Img,
+} from './style';
 import { useSelector } from 'react-redux';
 import { deepPurple } from '@mui/material/colors';
 import Upload from '../Upload/Upload';
@@ -43,16 +54,25 @@ const Navbar = () => {
     <>
       <Container>
         <Wrapper>
+          <Link to='/' style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Logo>
+              <Img src={kavyaTube} alt='kavyaTube' />
+              KavyaTube
+            </Logo>
+          </Link>
+
           <Search>
             <Input
               placeholder='Search'
               type='search'
               onChange={(e) => setQ(e.target.value)}
-            />
-            <SearchOutlinedIcon
-              sx={{ cursor: 'pointer' }}
-              onClick={() => navigate(`/search?q=${q}`)}
-            />
+            />{' '}
+            <Buttons>
+              <SearchOutlinedIcon
+                sx={{ cursor: 'pointer' }}
+                onClick={() => navigate(`/search?q=${q}`)}
+              />
+            </Buttons>
           </Search>
           {currentUser ? (
             <User>

@@ -1,18 +1,18 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  flex: 1.2;
-  background-color: ${({ theme }) => theme.bg};
+  background-color: ${({ theme }) => theme.bgLighter};
   color: ${({ theme }) => theme.text};
-  height: 100vh;
   font-size: 14px;
-  position: sticky;
+  position: fixed;
+  bottom: 0;
   top: 0;
-  overflow-y: scroll;
+  z-index: 1000;
 `;
 
 export const Wrapper = styled.div`
-  padding: 18px 26px;
+  // padding: 18px 26px;
+  padding: 10px;
 `;
 
 export const Logo = styled.div`
@@ -26,6 +26,27 @@ export const Logo = styled.div`
 
 export const Img = styled.img`
   height: 25px;
+`;
+
+export const Itemmenu = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 20px;
+  cursor: pointer;
+  padding: 7.5px 0px;
+`;
+
+export const Items = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+  margin-bottom: 10px;
+  padding: 7.5px 0px;
+  &:hover {
+    background-color: ${({ theme }) => theme.soft};
+  }
 `;
 
 export const Item = styled.div`

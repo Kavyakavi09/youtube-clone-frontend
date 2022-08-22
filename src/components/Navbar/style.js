@@ -1,41 +1,72 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
   background-color: ${({ theme }) => theme.bgLighter};
-  height: 56px;
+  height: 55px;
+  margin: ;
 `;
 
 export const Wrapper = styled.div`
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  height: 100%;
-  padding: 0px 20px;
-  position: relative;
+  flex-direction: row;
+  justify-content: space-between;
 `;
 
 export const Search = styled.div`
-  width: 40%;
-  position: absolute;
-  left: 0px;
-  right: 0px;
-  margin: auto;
+  flex: 1;
+  max-width: 500px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
+  margin-left: 70px;
+  margin-right: 35px;
+`;
+
+export const Left = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const Logo = styled.div`
+  padding-left: 106px;
+  padding-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: bold;
+  margin-bottom: 25px;
+  cursor: pointer;
+`;
+
+export const Img = styled.img`
+  height: 25px;
 `;
 
 export const Input = styled.input`
-  border: none;
-  background-color: transparent;
-  outline: none;
   flex: 1;
+  height: 36px;
+  padding-left: 10px;
   color: ${({ theme }) => theme.text};
+  background-color: transparent;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  box-shadow: inset 1px 2px 3px rgba(0, 0, 0, 0.05);
+  width: 0;
+  &::placeholder {
+    font-size: 16px;
+  }
+`;
+
+export const Buttons = styled.button`
+  padding: 3px 15px;
+  color: ${({ theme }) => theme.text};
+  background-color: transparent;
+  border: 1px solid #ccc;
+  margin-left: -1px;
 `;
 
 export const Button = styled.button`
@@ -49,6 +80,8 @@ export const Button = styled.button`
   display: flex;
   align-items: center;
   gap: 5px;
+  margin-top: 10px;
+  margin-right: 10px;
 `;
 export const User = styled.div`
   display: flex;
