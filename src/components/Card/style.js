@@ -26,6 +26,7 @@ export const ChannelImage = styled.img`
   height: 46px;
   border-radius: 50%;
   display: ${(props) => props.type === 'sm' && 'none'};
+  object-fit: cover;
 `;
 
 export const Avatar = styled.div`

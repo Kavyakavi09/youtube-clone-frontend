@@ -74,7 +74,7 @@ const Video = () => {
       }
     };
     fetchView();
-  }, []);
+  }, [path]);
 
   const handleLike = async () => {
     await axios.put(`/users/like/${currentVideo?._id}`);

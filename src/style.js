@@ -9,8 +9,7 @@ export const Main = styled.div`
   flex: 7;
   color: ${({ theme }) => theme.text};
   background-color: ${({ theme }) => theme.bg};
-  min-height: 100%;
-  height: auto;
+  min-height: 100vh;
 `;
 
 export const Wrapper = styled.div``;

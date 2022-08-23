@@ -8,7 +8,6 @@ export const Container = styled.div`
   z-index: 100;
   background-color: ${({ theme }) => theme.bgLighter};
   height: 55px;
-  margin: ;
 `;
 
 export const Wrapper = styled.div`

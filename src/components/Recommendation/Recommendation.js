@@ -18,7 +18,7 @@ const Recommendation = ({ tags }) => {
   }, [tags]);
 
   const recommendation = videos.filter(
-    (videoId) => videoId._id !== currentVideo._id
+    (videoId) => videoId?._id !== currentVideo?._id
   );
 
   return (
