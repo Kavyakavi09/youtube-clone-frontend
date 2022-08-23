@@ -11,7 +11,6 @@ export const Container = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  // padding: 18px 26px;
   padding: 10px;
 `;
 

@@ -7,8 +7,10 @@ export const Container = styled.div`
 
 export const Main = styled.div`
   flex: 7;
-  background-color: ${({ theme }) => theme.bg};
   color: ${({ theme }) => theme.text};
+  background-color: ${({ theme }) => theme.bg};
+  min-height: 100%;
+  height: auto;
 `;
 
 export const Wrapper = styled.div``;
