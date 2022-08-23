@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { Container } from './style';
 import Card from '../Card/Card';
 import { useSelector } from 'react-redux';
-import API from '../../Global';
 
 const Recommendation = ({ tags }) => {
   const { currentVideo } = useSelector((state) => state.video);
@@ -12,7 +11,9 @@ const Recommendation = ({ tags }) => {
 
   useEffect(() => {
     const fetchVideos = async () => {
-      const res = await axios.get(`${API}/videos/random`);
+      const res = await axios.get(
+        `https://kavyatube.herokuapp.com/api/videos/random`
+      );
       setVideos(res.data);
     };
     fetchVideos();

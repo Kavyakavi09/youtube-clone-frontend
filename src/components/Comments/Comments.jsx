@@ -6,7 +6,6 @@ import Comment from './Comment/Comment';
 import axios from 'axios';
 import { deepPurple } from '@mui/material/colors';
 import Avatar from '@mui/material/Avatar';
-import API from '../../Global';
 
 const Comments = ({ videoId }) => {
   const { currentUser } = useSelector((state) => state.user);
@@ -16,7 +15,7 @@ const Comments = ({ videoId }) => {
 
   const fetchComments = async () => {
     try {
-      const res = await axios.get(`${API}/comments/${videoId}`);
+      const res = await axios.get(`/comments/${videoId}`);
       setComments(res.data);
     } catch (err) {}
   };
@@ -27,7 +26,10 @@ const Comments = ({ videoId }) => {
 
   const PostComments = async () => {
     try {
-      await axios.post(`${API}/comments/`, { desc, videoId });
+      await axios.post(`https://kavyatube.herokuapp.com/api/comments/`, {
+        desc,
+        videoId,
+      });
       fetchComments();
       setDesc('');
     } catch (err) {}

@@ -13,14 +13,15 @@ import {
 } from './style';
 import { format } from 'timeago.js';
 import axios from 'axios';
-import API from '../../Global';
 
 const Card = ({ type, video }) => {
   const [channel, setChannel] = useState({});
 
   useEffect(() => {
     const fetchChannel = async () => {
-      const res = await axios.get(`${API}/users/find/${video.userId}`);
+      const res = await axios.get(
+        `https://kavyatube.herokuapp.com/api/users/find/${video.userId}`
+      );
       setChannel(res.data);
     };
     fetchChannel();

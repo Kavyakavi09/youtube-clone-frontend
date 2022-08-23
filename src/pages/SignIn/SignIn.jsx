@@ -16,7 +16,6 @@ import axios from 'axios';
 import { loginFailure, loginStart, loginSuccess } from '../../redux/userSlice';
 import { auth, provider } from '../../firebase';
 import { signInWithPopup } from 'firebase/auth';
-import API from '../../Global';
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -30,7 +29,10 @@ const SignIn = () => {
     e.preventDefault();
     dispatch(loginStart());
     try {
-      const res = await axios.post(`${API}/auth/signin`, { name, password });
+      const res = await axios.post(
+        `https://kavyatube.herokuapp.com/api/auth/signin`,
+        { name, password }
+      );
       dispatch(loginSuccess(res.data));
       navigate('/');
     } catch (error) {
@@ -43,7 +45,7 @@ const SignIn = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
         axios
-          .post(`${API}/auth/google`, {
+          .post(`https://kavyatube.herokuapp.com/api/auth/google`, {
             name: result.user.displayName,
             email: result.user.email,
             img: result.user.photoURL,
