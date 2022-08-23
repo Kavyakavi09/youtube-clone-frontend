@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   gap: 24px;
+  flex-wrap: wrap;
 `;
 
 export const Content = styled.div`

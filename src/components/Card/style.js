@@ -9,8 +9,8 @@ export const Container = styled.div`
 `;
 
 export const Image = styled.img`
-  width: 100%;
-  height: ${(props) => (props.type === 'sm' ? '120px' : '202px')};
+  width: ${(props) => (props.type === 'sm' ? '250px' : '100%')};
+  height: ${(props) => (props.type === 'sm' ? '150px' : '202px')};
   background-color: #999;
 `;
 
