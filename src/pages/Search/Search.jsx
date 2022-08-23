@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Card from '../../components/Card/Card';
 import { Container } from './style';
+import API from '../../Global';
 
 const Search = () => {
   const [videos, setVideos] = useState([]);
@@ -10,7 +11,7 @@ const Search = () => {
 
   useEffect(() => {
     const fetchVideos = async () => {
-      const res = await axios.get(`/videos/search${query}`);
+      const res = await axios.get(`${API}/videos/search${query}`);
       setVideos(res.data);
     };
     fetchVideos();

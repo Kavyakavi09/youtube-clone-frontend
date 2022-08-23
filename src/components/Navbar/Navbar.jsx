@@ -26,6 +26,7 @@ import Menu from '@mui/material/Menu';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import axios from 'axios';
+import API from '../../Global';
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ const Navbar = () => {
   };
   const handleCloseUserMenu = async () => {
     try {
-      await axios.get(`/auth/signout`);
+      await axios.get(`${API}/auth/signout`);
       localStorage.removeItem('persist:root');
       navigate('/signin');
       window.location.reload();
