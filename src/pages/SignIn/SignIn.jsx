@@ -85,6 +85,7 @@ const SignIn = () => {
         <Input
           placeholder='email'
           name='email'
+          value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <Input
