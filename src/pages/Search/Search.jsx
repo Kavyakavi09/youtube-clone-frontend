@@ -10,9 +10,7 @@ const Search = () => {
 
   useEffect(() => {
     const fetchVideos = async () => {
-      const res = await axios.get(
-        `https://kavyatube.herokuapp.com/api/videos/search${query}`
-      );
+      const res = await axios.get(`/videos/search${query}`);
       setVideos(res.data);
     };
     fetchVideos();

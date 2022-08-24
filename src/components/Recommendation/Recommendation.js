@@ -11,9 +11,7 @@ const Recommendation = ({ tags }) => {
 
   useEffect(() => {
     const fetchVideos = async () => {
-      const res = await axios.get(
-        `https://kavyatube.herokuapp.com/api/videos/random`
-      );
+      const res = await axios.get(`/videos/random`);
       setVideos(res.data);
     };
     fetchVideos();

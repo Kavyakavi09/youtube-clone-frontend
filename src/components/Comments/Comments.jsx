@@ -15,9 +15,7 @@ const Comments = ({ videoId }) => {
 
   const fetchComments = async () => {
     try {
-      const res = await axios.get(
-        `https://kavyatube.herokuapp.com/api/comments/${videoId}`
-      );
+      const res = await axios.get(`/comments/${videoId}`);
       setComments(res.data);
     } catch (err) {}
   };
