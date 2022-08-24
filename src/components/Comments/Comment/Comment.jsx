@@ -11,7 +11,7 @@ const Comment = ({ comment }) => {
   useEffect(() => {
     const fetchComment = async () => {
       const res = await axios.get(
-        `https://kavyatube.herokuapp.com/api/users/find/${comment.userId}`
+        `https://kavyatube.herokuapp.com/api/users/find/${comment?.userId}`
       );
       setChannel(res.data);
     };

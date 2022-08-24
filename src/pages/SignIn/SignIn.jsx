@@ -29,10 +29,7 @@ const SignIn = () => {
     e.preventDefault();
     dispatch(loginStart());
     try {
-      const res = await axios.post(
-        `https://kavyatube.herokuapp.com/api/auth/signin`,
-        { name, password }
-      );
+      const res = await axios.post(`/auth/signin`, { name, password });
       dispatch(loginSuccess(res.data));
       navigate('/');
     } catch (error) {
@@ -45,7 +42,7 @@ const SignIn = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
         axios
-          .post(`https://kavyatube.herokuapp.com/api/auth/google`, {
+          .post(`/auth/google`, {
             name: result.user.displayName,
             email: result.user.email,
             img: result.user.photoURL,
@@ -68,11 +65,13 @@ const SignIn = () => {
         <Input
           placeholder='username'
           name='name'
+          value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <Input
           type='password'
           placeholder='password'
+          value={password}
           name='password'
           onChange={(e) => setPassword(e.target.value)}
         />
@@ -88,7 +87,6 @@ const SignIn = () => {
         <Input
           placeholder='email'
           name='email'
-          value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <Input

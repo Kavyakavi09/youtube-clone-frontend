@@ -42,7 +42,7 @@ const Navbar = () => {
   };
   const handleCloseUserMenu = async () => {
     try {
-      await axios.get(`https://kavyatube.herokuapp.com/api/auth/signout`);
+      await axios.get(`/auth/signout`);
       localStorage.removeItem('persist:root');
       navigate('/signin');
       window.location.reload();
