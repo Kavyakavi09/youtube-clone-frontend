@@ -4,13 +4,14 @@ import axios from 'axios';
 import { format } from 'timeago.js';
 import { deepPurple } from '@mui/material/colors';
 import Avatar from '@mui/material/Avatar';
+import { API_URL } from '../../../Global';
 
 const Comment = ({ comment }) => {
   const [channel, setChannel] = useState({});
 
   useEffect(() => {
     const fetchComment = async () => {
-      const res = await axios.get(`/users/find/${comment?.userId}`);
+      const res = await axios.get(`${API_URL}/users/find/${comment?.userId}`);
       setChannel(res.data);
     };
     fetchComment();

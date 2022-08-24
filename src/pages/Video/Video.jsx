@@ -40,6 +40,7 @@ import { subscription } from '../../redux/userSlice';
 import Recommendation from '../../components/Recommendation/Recommendation';
 import { deepPurple } from '@mui/material/colors';
 import Avatar from '@mui/material/Avatar';
+import { API_URL } from '../../Global';
 
 const Video = () => {
   const { currentUser } = useSelector((state) => state.user);
@@ -52,9 +53,9 @@ const Video = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const videoRes = await axios.get(`/videos/find/${path}`);
+        const videoRes = await axios.get(`${API_URL}/videos/find/${path}`);
         const channelRes = await axios.get(
-          `/users/find/${videoRes.data.userId}`
+          `${API_URL}/users/find/${videoRes.data.userId}`
         );
         setChannel(channelRes.data);
         dispatch(fetchSuccess(videoRes.data));
@@ -68,7 +69,7 @@ const Video = () => {
   useEffect(() => {
     const fetchView = async () => {
       try {
-        await axios.put(`/videos/view/${path}`);
+        await axios.put(`${API_URL}/videos/view/${path}`);
       } catch (err) {
         dispatch(fetchFailure);
       }
@@ -77,19 +78,19 @@ const Video = () => {
   }, [path]);
 
   const handleLike = async () => {
-    await axios.put(`/users/like/${currentVideo?._id}`);
+    await axios.put(`${API_URL}/users/like/${currentVideo?._id}`);
     dispatch(like(currentUser?._id));
   };
 
   const handleDislike = async () => {
-    await axios.put(`/users/dislike/${currentVideo?._id}`);
+    await axios.put(`${API_URL}/users/dislike/${currentVideo?._id}`);
     dispatch(dislike(currentUser?._id));
   };
 
   const handleSub = async () => {
     currentUser?.subscribedUsers?.includes(channel?._id)
-      ? await axios.put(`/users/unsub/${channel?._id}`)
-      : await axios.put(`/users/sub/${channel?._id}`);
+      ? await axios.put(`${API_URL}/users/unsub/${channel?._id}`)
+      : await axios.put(`${API_URL}/users/sub/${channel?._id}`);
     dispatch(subscription(channel?._id));
   };
 
@@ -147,7 +148,7 @@ const Video = () => {
           </ChannelInfo>
           <Subscribe
             onClick={handleSub}
-            id={currentUser?.subscribedUsers.includes(channel?._id)}>
+            id={currentUser?.subscribedUsers?.includes(channel?._id)}>
             {currentUser?.subscribedUsers?.includes(channel?._id)
               ? 'SUBSCRIBED'
               : 'SUBSCRIBE'}

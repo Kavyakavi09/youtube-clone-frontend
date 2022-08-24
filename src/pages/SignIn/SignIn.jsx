@@ -16,6 +16,8 @@ import axios from 'axios';
 import { loginFailure, loginStart, loginSuccess } from '../../redux/userSlice';
 import { auth, provider } from '../../firebase';
 import { signInWithPopup } from 'firebase/auth';
+import { useCookies } from 'react-cookie';
+import { API_URL } from '../../Global';
 
 const SignIn = () => {
   const dispatch = useDispatch();
@@ -24,19 +26,39 @@ const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const [cookies, setCookie] = useCookies(['access_token']);
 
   const handleLogin = async (e) => {
     e.preventDefault();
     dispatch(loginStart());
     try {
-      const res = await axios.post(`/auth/signin`, {
+      const res = await axios.post(`${API_URL}/auth/signin`, {
         name,
         password,
       });
       dispatch(loginSuccess(res.data));
+      setCookie('access_token', res.data.token, { path: '/' });
+      setName('');
+      setPassword('');
       navigate('/');
     } catch (error) {
       dispatch(loginFailure());
+    }
+  };
+
+  const handleSignup = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post(`${API_URL}/auth/signup`, {
+        name,
+        email,
+        password,
+      });
+      setName('');
+      setEmail('');
+      setPassword('');
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -45,13 +67,14 @@ const SignIn = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
         axios
-          .post(`/auth/google`, {
+          .post(`${API_URL}/auth/google`, {
             name: result.user.displayName,
             email: result.user.email,
             img: result.user.photoURL,
           })
           .then((res) => {
             dispatch(loginSuccess(res.data));
+            setCookie('access_token', res.data.token, { path: '/' });
             navigate('/');
           });
       })
@@ -98,7 +121,7 @@ const SignIn = () => {
           name='password'
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Button>Sign up</Button>
+        <Button onClick={handleSignup}>Sign up</Button>
       </Wrapper>
       <More>
         English(USA)

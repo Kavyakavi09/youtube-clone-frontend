@@ -19,6 +19,7 @@ import {
   Label,
 } from './style';
 import { useSelector } from 'react-redux';
+import { API_URL } from '../../Global';
 
 const Upload = ({ setOpen }) => {
   const [img, setImg] = useState(undefined);
@@ -88,7 +89,7 @@ const Upload = ({ setOpen }) => {
 
   const handleUpload = async (e) => {
     e.preventDefault();
-    const res = await axios.post(`/videos/`, {
+    const res = await axios.post(`${API_URL}/videos/`, {
       ...inputs,
       tags,
       channelImage,
