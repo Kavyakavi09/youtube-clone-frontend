@@ -37,7 +37,7 @@ const SignIn = () => {
         password,
       });
       dispatch(loginSuccess(res.data));
-      setCookie('access_token', res.data.token, { path: '/' });
+      setCookie('access_token', res.data.token);
       setName('');
       setPassword('');
       navigate('/');
