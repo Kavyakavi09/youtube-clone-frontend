@@ -40,9 +40,9 @@ const Comments = ({ videoId }) => {
     <Container>
       <NewComment>
         <Avatar
-          src={`${currentUser?.img}`}
+          src={`${currentUser?.user?.img}`}
           sx={{ bgcolor: deepPurple[500], width: 46, height: 46 }}>
-          {currentUser?.name?.charAt(0)}
+          {currentUser?.user?.name?.charAt(0)}
         </Avatar>
         <Input
           placeholder='Add a comment...'

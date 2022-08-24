@@ -79,16 +79,16 @@ const Video = () => {
 
   const handleLike = async () => {
     await axios.put(`${API_URL}/users/like/${currentVideo?._id}`);
-    dispatch(like(currentUser?._id));
+    dispatch(like(currentUser?.user?._id));
   };
 
   const handleDislike = async () => {
     await axios.put(`${API_URL}/users/dislike/${currentVideo?._id}`);
-    dispatch(dislike(currentUser?._id));
+    dispatch(dislike(currentUser?.user?._id));
   };
 
   const handleSub = async () => {
-    currentUser?.subscribedUsers?.includes(channel?._id)
+    currentUser?.user?.subscribedUsers?.includes(channel?._id)
       ? await axios.put(`${API_URL}/users/unsub/${channel?._id}`)
       : await axios.put(`${API_URL}/users/sub/${channel?._id}`);
     dispatch(subscription(channel?._id));
@@ -107,7 +107,7 @@ const Video = () => {
           </Info>
           <Buttons>
             <Button onClick={handleLike}>
-              {currentVideo?.likes?.includes(currentUser?._id) ? (
+              {currentVideo?.likes?.includes(currentUser?.user?._id) ? (
                 <ThumbUpIcon />
               ) : (
                 <ThumbUpOutlinedIcon />
@@ -115,7 +115,7 @@ const Video = () => {
               {currentVideo?.likes?.length}
             </Button>
             <Button onClick={handleDislike}>
-              {currentVideo?.dislikes?.includes(currentUser?._id) ? (
+              {currentVideo?.dislikes?.includes(currentUser?.user?._id) ? (
                 <ThumbDownIcon />
               ) : (
                 <ThumbDownOffAltOutlinedIcon />
@@ -148,8 +148,8 @@ const Video = () => {
           </ChannelInfo>
           <Subscribe
             onClick={handleSub}
-            id={currentUser?.subscribedUsers?.includes(channel?._id)}>
-            {currentUser?.subscribedUsers?.includes(channel?._id)
+            id={currentUser?.user?.subscribedUsers?.includes(channel?._id)}>
+            {currentUser?.user?.subscribedUsers?.includes(channel?._id)
               ? 'SUBSCRIBED'
               : 'SUBSCRIBE'}
           </Subscribe>

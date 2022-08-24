@@ -78,7 +78,7 @@ const Navbar = () => {
               />
             </Buttons>
           </Search>
-          {currentUser ? (
+          {currentUser?.user ? (
             <User>
               <VideoCallOutlinedIcon
                 onClick={() => setOpen(true)}
@@ -88,14 +88,14 @@ const Navbar = () => {
                 <Tooltip title='Log out'>
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar
-                      src={`${currentUser?.img}`}
+                      src={`${currentUser?.user?.img}`}
                       sx={{ bgcolor: deepPurple[500] }}>
-                      {currentUser?.name?.charAt(0)}
+                      {currentUser?.user?.name?.charAt(0)}
                     </Avatar>
                   </IconButton>
                 </Tooltip>
                 <span style={{ marginLeft: '5px', marginRight: '5px' }}>
-                  {currentUser.name}
+                  {currentUser?.user?.name}
                 </span>
                 <Menu
                   sx={{ mt: '45px' }}

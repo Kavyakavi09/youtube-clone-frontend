@@ -18,7 +18,6 @@ import {
   Button,
   Label,
 } from './style';
-import { useSelector } from 'react-redux';
 import { API_URL } from '../../Global';
 
 const Upload = ({ setOpen }) => {
@@ -30,8 +29,6 @@ const Upload = ({ setOpen }) => {
   const [tags, setTags] = useState([]);
 
   const navigate = useNavigate();
-  const { currentUser } = useSelector((state) => state.user);
-  let channelImage = currentUser?.img;
 
   const handleChange = (e) => {
     setInputs((prev) => {
@@ -92,7 +89,6 @@ const Upload = ({ setOpen }) => {
     const res = await axios.post(`${API_URL}/videos/`, {
       ...inputs,
       tags,
-      channelImage,
     });
     setOpen(false);
     res.status === 200 && navigate(`/video/${res.data._id}`);
