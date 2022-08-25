@@ -26,7 +26,6 @@ import Menu from '@mui/material/Menu';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import axios from 'axios';
-import { useCookies } from 'react-cookie';
 import { API_URL } from '../../Global';
 
 const Navbar = () => {
@@ -35,7 +34,6 @@ const Navbar = () => {
   const [q, setQ] = useState('');
   const { currentUser } = useSelector((state) => state.user);
   const [anchorElUser, setAnchorElUser] = useState(null);
-  const [cookies, removeCookie] = useCookies(['access_token']);
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -46,7 +44,7 @@ const Navbar = () => {
   const handleCloseUserMenu = async () => {
     try {
       await axios.get(`${API_URL}/auth/signout`);
-      removeCookie('access_token');
+
       localStorage.removeItem('persist:root');
       navigate('/signin');
       window.location.reload();

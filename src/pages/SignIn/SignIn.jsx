@@ -16,7 +16,6 @@ import axios from 'axios';
 import { loginFailure, loginStart, loginSuccess } from '../../redux/userSlice';
 import { auth, provider } from '../../firebase';
 import { signInWithPopup } from 'firebase/auth';
-import { useCookies } from 'react-cookie';
 import { API_URL } from '../../Global';
 
 const SignIn = () => {
@@ -26,7 +25,6 @@ const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const [cookies, setCookie] = useCookies(['access_token']);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -37,7 +35,6 @@ const SignIn = () => {
         password,
       });
       dispatch(loginSuccess(res.data));
-      setCookie('access_token', res.data.token, { path: '/' });
       setName('');
       setPassword('');
       navigate('/');
@@ -74,7 +71,6 @@ const SignIn = () => {
           })
           .then((res) => {
             dispatch(loginSuccess(res.data));
-            setCookie('access_token', res.data.token, { path: '/' });
             navigate('/');
           });
       })
