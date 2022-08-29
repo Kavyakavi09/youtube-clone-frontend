@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   currentUser: null,
@@ -7,7 +7,7 @@ const initialState = {
 };
 
 export const userSlice = createSlice({
-  name: "user",
+  name: 'user',
   initialState,
   reducers: {
     loginStart: (state) => {
@@ -35,7 +35,7 @@ export const userSlice = createSlice({
           1
         );
       } else {
-        state.currentUser.subscribedUsers.push(action.payload);
+        state.currentUser?.user?.subscribedUsers.push(action.payload);
       }
     },
   },
