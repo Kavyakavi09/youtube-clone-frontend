@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   currentUser: null,
@@ -7,7 +7,7 @@ const initialState = {
 };
 
 export const userSlice = createSlice({
-  name: 'user',
+  name: "user",
   initialState,
   reducers: {
     loginStart: (state) => {
@@ -27,9 +27,9 @@ export const userSlice = createSlice({
       state.error = false;
     },
     subscription: (state, action) => {
-      if (state.currentUser.subscribedUsers.includes(action.payload)) {
-        state.currentUser.subscribedUsers.splice(
-          state.currentUser.subscribedUsers.findIndex(
+      if (state.currentUser?.user?.subscribedUsers.includes(action.payload)) {
+        state.currentUser?.user?.subscribedUsers.splice(
+          state.currentUser?.user?.subscribedUsers.findIndex(
             (channelId) => channelId === action.payload
           ),
           1

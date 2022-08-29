@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux/es/exports';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux/es/exports";
 import {
   Container,
   Wrapper,
@@ -11,19 +11,19 @@ import {
   More,
   Links,
   Link,
-} from './style';
-import axios from 'axios';
-import { loginFailure, loginStart, loginSuccess } from '../../redux/userSlice';
-import { auth, provider } from '../../firebase';
-import { signInWithPopup } from 'firebase/auth';
-import { API_URL } from '../../Global';
+} from "./style";
+import axios from "axios";
+import { loginFailure, loginStart, loginSuccess } from "../../redux/userSlice";
+import { auth, provider } from "../../firebase";
+import { signInWithPopup } from "firebase/auth";
+import { API_URL } from "../../Global";
 
 const SignIn = () => {
   const dispatch = useDispatch();
 
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
@@ -35,9 +35,10 @@ const SignIn = () => {
         password,
       });
       dispatch(loginSuccess(res.data));
-      setName('');
-      setPassword('');
-      navigate('/');
+      localStorage.setItem("Authorization", res.data.token);
+      setName("");
+      setPassword("");
+      navigate("/");
     } catch (error) {
       dispatch(loginFailure());
     }
@@ -51,9 +52,9 @@ const SignIn = () => {
         email,
         password,
       });
-      setName('');
-      setEmail('');
-      setPassword('');
+      setName("");
+      setEmail("");
+      setPassword("");
     } catch (error) {
       console.log(error);
     }
@@ -71,7 +72,9 @@ const SignIn = () => {
           })
           .then((res) => {
             dispatch(loginSuccess(res.data));
-            navigate('/');
+            localStorage.setItem("Authorization", res.data.token);
+
+            navigate("/");
           });
       })
       .catch((error) => {

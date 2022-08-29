@@ -1,18 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { Container, NewComment, Input, Buttons, Button } from './style';
-import Comment from './Comment/Comment';
-import axios from 'axios';
-import { deepPurple } from '@mui/material/colors';
-import Avatar from '@mui/material/Avatar';
-import { API_URL } from '../../Global';
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Container, NewComment, Input, Buttons, Button } from "./style";
+import Comment from "./Comment/Comment";
+import axios from "axios";
+import { deepPurple } from "@mui/material/colors";
+import Avatar from "@mui/material/Avatar";
+import { API_URL } from "../../Global";
+axios.defaults.withCredentials = true;
 
 const Comments = ({ videoId }) => {
   const { currentUser } = useSelector((state) => state.user);
 
   const [comments, setComments] = useState([]);
-  const [desc, setDesc] = useState('');
+  const [desc, setDesc] = useState("");
 
   const fetchComments = async () => {
     try {
@@ -27,12 +28,16 @@ const Comments = ({ videoId }) => {
 
   const PostComments = async () => {
     try {
-      await axios.post(`${API_URL}/comments/`, {
-        desc,
-        videoId,
-      });
+      await axios.post(
+        `${API_URL}/comments/`,
+        {
+          desc,
+          videoId,
+        },
+        { headers: { Authorization: localStorage.getItem("Authorization") } }
+      );
       fetchComments();
-      setDesc('');
+      setDesc("");
     } catch (err) {}
   };
 

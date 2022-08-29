@@ -69,7 +69,13 @@ const Video = () => {
   useEffect(() => {
     const fetchView = async () => {
       try {
-        await axios.put(`${API_URL}/videos/view/${path}`);
+        await axios.put(
+          `${API_URL}/videos/view/${path}`,
+          {},
+          {
+            headers: { Authorization: localStorage.getItem('Authorization') },
+          }
+        );
       } catch (err) {
         dispatch(fetchFailure);
       }
@@ -78,19 +84,43 @@ const Video = () => {
   }, [path]);
 
   const handleLike = async () => {
-    await axios.put(`${API_URL}/users/like/${currentVideo?._id}`);
+    await axios.put(
+      `${API_URL}/users/like/${currentVideo?._id}`,
+      {},
+      {
+        headers: { Authorization: localStorage.getItem('Authorization') },
+      }
+    );
     dispatch(like(currentUser?.user?._id));
   };
 
   const handleDislike = async () => {
-    await axios.put(`${API_URL}/users/dislike/${currentVideo?._id}`);
+    await axios.put(
+      `${API_URL}/users/dislike/${currentVideo?._id}`,
+      {},
+      {
+        headers: { Authorization: localStorage.getItem('Authorization') },
+      }
+    );
     dispatch(dislike(currentUser?.user?._id));
   };
 
   const handleSub = async () => {
     currentUser?.user?.subscribedUsers?.includes(channel?._id)
-      ? await axios.put(`${API_URL}/users/unsub/${channel?._id}`)
-      : await axios.put(`${API_URL}/users/sub/${channel?._id}`);
+      ? await axios.put(
+          `${API_URL}/users/unsub/${channel?._id}`,
+          {},
+          {
+            headers: { Authorization: localStorage.getItem('Authorization') },
+          }
+        )
+      : await axios.put(
+          `${API_URL}/users/sub/${channel?._id}`,
+          {},
+          {
+            headers: { Authorization: localStorage.getItem('Authorization') },
+          }
+        );
     dispatch(subscription(channel?._id));
   };
 

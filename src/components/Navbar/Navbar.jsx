@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import kavyaTube from '../../Img/logo.png';
-import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import VideoCallOutlinedIcon from '@mui/icons-material/VideoCallOutlined';
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
-import Avatar from '@mui/material/Avatar';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import kavyaTube from "../../Img/logo.png";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import VideoCallOutlinedIcon from "@mui/icons-material/VideoCallOutlined";
+import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import Avatar from "@mui/material/Avatar";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Container,
   Wrapper,
@@ -15,23 +15,23 @@ import {
   User,
   Logo,
   Img,
-} from './style';
-import { useSelector } from 'react-redux';
-import { deepPurple } from '@mui/material/colors';
-import Upload from '../Upload/Upload';
-import Box from '@mui/material/Box';
-import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
-import Menu from '@mui/material/Menu';
-import Tooltip from '@mui/material/Tooltip';
-import MenuItem from '@mui/material/MenuItem';
-import axios from 'axios';
-import { API_URL } from '../../Global';
+} from "./style";
+import { useSelector } from "react-redux";
+import { deepPurple } from "@mui/material/colors";
+import Upload from "../Upload/Upload";
+import Box from "@mui/material/Box";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
+import axios from "axios";
+import { API_URL } from "../../Global";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  const [q, setQ] = useState('');
+  const [q, setQ] = useState("");
   const { currentUser } = useSelector((state) => state.user);
   const [anchorElUser, setAnchorElUser] = useState(null);
 
@@ -44,9 +44,8 @@ const Navbar = () => {
   const handleCloseUserMenu = async () => {
     try {
       await axios.get(`${API_URL}/auth/signout`);
-
-      localStorage.removeItem('persist:root');
-      navigate('/signin');
+      localStorage.removeItem("persist:root");
+      navigate("/signin");
       window.location.reload();
     } catch (err) {}
     setAnchorElUser(null);
@@ -56,7 +55,7 @@ const Navbar = () => {
     <>
       <Container>
         <Wrapper>
-          <Link to='/' style={{ textDecoration: 'none', color: 'inherit' }}>
+          <Link to='/' style={{ textDecoration: "none", color: "inherit" }}>
             <Logo>
               <Img src={kavyaTube} alt='kavyaTube' />
               KavyaTube
@@ -68,10 +67,10 @@ const Navbar = () => {
               placeholder='Search'
               type='search'
               onChange={(e) => setQ(e.target.value)}
-            />{' '}
+            />{" "}
             <Buttons>
               <SearchOutlinedIcon
-                sx={{ cursor: 'pointer' }}
+                sx={{ cursor: "pointer" }}
                 onClick={() => navigate(`/search?q=${q}`)}
               />
             </Buttons>
@@ -80,7 +79,7 @@ const Navbar = () => {
             <User>
               <VideoCallOutlinedIcon
                 onClick={() => setOpen(true)}
-                sx={{ cursor: 'pointer' }}
+                sx={{ cursor: "pointer" }}
               />
               <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title='Log out'>
@@ -92,21 +91,21 @@ const Navbar = () => {
                     </Avatar>
                   </IconButton>
                 </Tooltip>
-                <span style={{ marginLeft: '5px', marginRight: '5px' }}>
+                <span style={{ marginLeft: "5px", marginRight: "5px" }}>
                   {currentUser?.user?.name}
                 </span>
                 <Menu
-                  sx={{ mt: '45px' }}
+                  sx={{ mt: "45px" }}
                   id='menu-appbar'
                   anchorEl={anchorElUser}
                   anchorOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
+                    vertical: "top",
+                    horizontal: "right",
                   }}
                   keepMounted
                   transformOrigin={{
-                    vertical: 'top',
-                    horizontal: 'right',
+                    vertical: "top",
+                    horizontal: "right",
                   }}
                   open={Boolean(anchorElUser)}
                   onClose={handleCloseUser}>
@@ -117,7 +116,7 @@ const Navbar = () => {
               </Box>
             </User>
           ) : (
-            <Link to='signin' style={{ textDecoration: 'none' }}>
+            <Link to='signin' style={{ textDecoration: "none" }}>
               <Button>
                 <AccountCircleOutlinedIcon />
                 SIGN IN

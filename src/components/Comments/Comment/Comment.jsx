@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { Container, Details, Name, Text, Date } from './style';
-import axios from 'axios';
-import { format } from 'timeago.js';
-import { deepPurple } from '@mui/material/colors';
-import Avatar from '@mui/material/Avatar';
-import { API_URL } from '../../../Global';
+import React, { useEffect, useState } from "react";
+import { Container, Details, Name, Text, Date } from "./style";
+import axios from "axios";
+import { format } from "timeago.js";
+import { deepPurple } from "@mui/material/colors";
+import Avatar from "@mui/material/Avatar";
+import { API_URL } from "../../../Global";
+axios.defaults.withCredentials = true;
 
 const Comment = ({ comment }) => {
   const [channel, setChannel] = useState({});
