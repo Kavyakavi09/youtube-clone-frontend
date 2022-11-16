@@ -1,1 +1,1 @@
-export const API_URL = 'https://kavyatube.herokuapp.com/api';
+export const API_URL = 'https://kavyatube.onrender.com/api';
